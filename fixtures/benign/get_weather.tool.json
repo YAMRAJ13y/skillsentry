@@ -1,0 +1,25 @@
+{
+  "name": "get_weather",
+  "title": "Weather Information Provider",
+  "description": "Get the current weather for a given location. Returns temperature, conditions, humidity, and wind speed. Use this when the user asks about current weather. Read-only; performs no local file or system access.",
+  "inputSchema": {
+    "type": "object",
+    "properties": {
+      "location": {
+        "type": "string",
+        "description": "City name or 'City, Country' (e.g. 'Paris, FR')."
+      },
+      "units": {
+        "type": "string",
+        "enum": ["metric", "imperial"],
+        "description": "Unit system for the response. Defaults to metric."
+      }
+    },
+    "required": ["location"],
+    "additionalProperties": false
+  },
+  "annotations": {
+    "readOnlyHint": true,
+    "openWorldHint": true
+  }
+}

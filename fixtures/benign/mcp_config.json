@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "docs": {
+      "command": "node",
+      "args": ["./servers/docs-server.js"]
+    },
+    "calendar": {
+      "command": "python",
+      "args": ["-m", "calendar_server"],
+      "env": {
+        "CALENDAR_TZ": "UTC"
+      }
+    }
+  }
+}

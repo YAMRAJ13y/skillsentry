@@ -1,0 +1,60 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "skillsentry"
+version = "0.1.0"
+description = "A semantic scanner for malicious MCP servers and agent skills (prompt-injection, tool-poisoning, excessive agency)."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Yamraj", email = "solankisumitt@gmail.com" }]
+keywords = [
+    "mcp",
+    "model-context-protocol",
+    "ai-security",
+    "prompt-injection",
+    "tool-poisoning",
+    "agent-security",
+    "owasp-llm-top-10",
+    "supply-chain",
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Security",
+]
+dependencies = []  # the core scanner is stdlib-only — clone and run
+
+[project.optional-dependencies]
+llm = ["anthropic>=0.40"]
+dev = ["pytest>=8", "ruff>=0.6"]
+
+[project.scripts]
+skillsentry = "skillsentry.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/YAMRAJ13y/skillsentry"
+Issues = "https://github.com/YAMRAJ13y/skillsentry/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.ruff.lint.per-file-ignores]
+# rules.py is a catalogue of long regex patterns + rule metadata; wrapping them
+# hurts readability more than it helps.
+"src/skillsentry/rules.py" = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
